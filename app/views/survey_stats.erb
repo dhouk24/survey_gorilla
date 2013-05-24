@@ -2,3 +2,12 @@
 <h1><%= survey.name %></h1>
 <h3>Share link to your awesome survey: <a href="/survey/<%= survey_id %>">http://localhost:9393/survey/<%= survey_id %></a></h3>
 <h4>survey has stats look at all this data viz all up in your face</h4>
+<h4>Survey results:</h4>
+<table>
+  <% survey.options.each do |option| %>
+  <tr>
+    <td><%= option.name %></td>
+    <td><%= option.votes %></td>
+  </tr>
+  <% end %>
+</table>
