@@ -15,9 +15,24 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <title>SURVEY GORILLA</title>
 </head>
 <body>
-  <%= yield %>
+  <ul>
+    <li><a href="/">Survey Monkey Logo TM</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/session_check">Create</a></li>
+    <% if @user = current_user %>
+    <li><a href="/login">Log In</a></li>
+    <li><a href="/signup">Sign Up</a></li>
+    <% else %>
+    <li><a href="/user/<%=@user.id%>"><%=@user.name%></a></li>
+    <li><a href="/logout">Logout</a></li>
+    <% end %>
+  </ul>
+  
+  <div class="container">
+    <%= yield %>
+  </div>
 </body>
 </html>
