@@ -55,7 +55,11 @@ get '/user/:username' do
 end
 
 get '/survey/:survey_id/stats' do
-  erb ( current_user == Survey.find(params[:survey_id]).creator ? :survey_stats : :error )
+   if current_user == Survey.find(params[:survey_id]).creator
+    erb :survey_stats, :locals => {:survey_id => params[:survey_id]}
+  else 
+    erb :error
+  end
 end
 
 # post '/edit' do

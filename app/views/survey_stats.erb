@@ -1,1 +1,4 @@
-<h1>survey has stats look at all this data viz all up in your face</h1>
+<% survey = Survey.find(survey_id) %>
+<h1><%= survey.name %></h1>
+<h3>Share link to your awesome survey: <a href="/survey/<%= survey_id %>">http://localhost:9393/survey/<%= survey_id %></a></h3>
+<h4>survey has stats look at all this data viz all up in your face</h4>
