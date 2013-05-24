@@ -31,16 +31,24 @@ post '/login' do
 end
 
 get '/create' do
-  erb :create_survey
+  create_survey if !@survey     # checks if user is hitting this route from home "create" button or from updating survey creation
+  erb :create_survey, :locals => {:survey => @survey, :questions => @questions, :options => @options}
 end
 
-post '/create' do
-  #inital: make new Survey object, store id, save object as instance variable?
-  #updates survey creation view
-  #takes in new question data, makes new Question object, Options objects
-  #adds question object to questions array (array = instance variable)
-  #adds options objects to options array
-  erb :create_survey
+post '/publish' do
+  
 end
 
-# publishing survey => Survey.create, Question.create, Option.create
+# post '/edit' do
+#   @survey = Survey.new 
+#   @questions = []
+#   @options = []
+
+#   @questions << Question.new(params)
+#   #inital: make new Survey object, store id, save object as instance variable?
+#   #updates survey creation view
+#   #takes in new question data, makes new Question object, Options objects
+#   #adds question object to questions array (array = instance variable)
+#   #adds options objects to options array
+#   redirect '/create'
+# end

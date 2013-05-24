@@ -3,6 +3,7 @@ class CreateSurveys < ActiveRecord::Migration
     create_table :surveys do |t|
       t.string     :name
       t.references :user
+      t.boolean    :published, :default => false
       t.timestamps
     end
   end
