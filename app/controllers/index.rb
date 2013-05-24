@@ -85,5 +85,11 @@ end
 
 post '/submit/:id' do
   @survey = Survey.find(params[:id])
-  "SUCCESS!"
+  @survey.questions.each do |question|
+    option_id = params["#{question.id}"]
+    Option.find(option_id).add_response!
+  end
+  redirect to '/'
 end
+
+
