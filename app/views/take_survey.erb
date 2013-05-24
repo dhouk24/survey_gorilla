@@ -1,0 +1,12 @@
+<h1><%=@survey.name%></h1>
+<form action="/submit" method="post">
+<ul>
+  <%@survey.questions.each do |question|%>
+  Question: <%= question.name %>
+    <%question.options.each_with_index do |option, index|%>
+    <input type = "radio" name = "option<%=index%>"  value = "<%=option.name%>">
+    <%end%>
+  <%end%>
+  <br>
+</ul>
+</form>

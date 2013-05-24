@@ -38,7 +38,16 @@ get '/create' do
 end
 
 post '/publish' do
-  "PUBLISHED YAY"
+  survey = Survey.create(:name  => params[:survey_name],
+                         :user  => current_user,
+                         :published => true)
+  question = Question.create(:name    => params[:question],
+                             :survey  => survey )
+  params[:option].each do |_, value|
+    Option.create(:question  => question,
+                  :name      => value )
+  end
+  redirect to '/survey/#{survey.id}/stats'
 end
 
 get '/user/:username' do  
@@ -68,4 +77,9 @@ end
 get '/survey/:id'
   @survey = Survey.find_by_id(params[:id])
   erb :take_survey
+end
+
+post '/submit/:id'
+  @survey = Survey.find(params[:id])
+  "SUCCESS!"
 end
