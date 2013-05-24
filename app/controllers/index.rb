@@ -41,6 +41,14 @@ post '/publish' do
   "PUBLISHED YAY"
 end
 
+get '/user/:username' do  
+  erb ( current_user.name == params[:username] ? :users : :error )
+end
+
+get '/survey/:survey_id/stats' do
+  erb :survey_stats
+end
+
 # post '/edit' do
 #   @survey = Survey.new 
 #   @questions = []

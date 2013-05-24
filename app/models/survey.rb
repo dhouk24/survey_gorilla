@@ -1,5 +1,5 @@
 class Survey < ActiveRecord::Base
-  belongs_to :creator, :source => :user 
+  # has_one    :creator, :source => :user
   has_many   :questions
   has_many   :user_surveys
   has_many   :users, :through => :user_surveys
