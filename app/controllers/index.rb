@@ -36,7 +36,7 @@ get '/create' do
 end
 
 post '/publish' do
-  
+  "PUBLISHED YAY"
 end
 
 # post '/edit' do
