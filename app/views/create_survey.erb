@@ -1,6 +1,6 @@
-<div class = "question_form">
-  <form method = "post" action = '/publish'>
-    <h3>Title: <input type = "text" name = "survey_name" placeholder = "Name your survey here"></h3>
+<form method = "post" action = '/publish' enctype="multipart/form-data">
+  <h3>Title: <input type = "text" name = "survey_name" placeholder = "Name your survey here"></h3>
+    <input type="file" name="image"><br><br>
     <label for="question">Question: </label><input type = "text" name = "question" placeholder = "Write question here">
    <ul>
      <li><input type = "text" name = "option[1]"  placeholder = "Place Option1 answer here"></li>

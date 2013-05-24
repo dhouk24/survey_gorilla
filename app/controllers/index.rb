@@ -38,8 +38,9 @@ get '/create' do
 end
 
 post '/publish' do
-  survey = Survey.create(:name  => params[:survey_name],
-                         :creator  => current_user,
+  survey = Survey.create(:name      => params[:survey_name],
+                         :creator   => current_user,
+                         :image     => params[:image],
                          :published => true)
   question = Question.create(:name    => params[:question],
                              :survey  => survey )
@@ -91,5 +92,3 @@ post '/submit/:id' do
   end
   redirect to '/'
 end
-
-

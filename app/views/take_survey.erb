@@ -1,4 +1,5 @@
 <h1><%=@survey.name%></h1>
+<img src="<%=@survey.image.thumb.url%>">
 <form action="/submit/<%=@survey.id%>" method="post">
 <ul>
   <%@survey.questions.each do |question|%>
