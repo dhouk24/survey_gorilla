@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many  :user_surveys
   has_many  :surveys, :through => :user_surveys
-  has_many  :surveys
+  has_many  :surveys, :foreign_key => :creator_id
   has_many  :responses
   has_many  :options, :through => :responses
 

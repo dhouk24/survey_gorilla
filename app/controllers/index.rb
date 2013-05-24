@@ -74,7 +74,7 @@ end
 
 # publishing survey => Survey.create, Question.create, Option.create
 
-get '/survey/:id'
+get '/survey/:id' do
   @survey = Survey.find_by_id(params[:id])
   erb :take_survey
 end
