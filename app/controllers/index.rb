@@ -39,7 +39,7 @@ end
 
 post '/publish' do
   survey = Survey.create(:name  => params[:survey_name],
-                         :user  => current_user,
+                         :creator  => current_user,
                          :published => true)
   question = Question.create(:name    => params[:question],
                              :survey  => survey )
@@ -47,7 +47,7 @@ post '/publish' do
     Option.create(:question  => question,
                   :name      => value )
   end
-  redirect to '/survey/#{survey.id}/stats'
+  redirect to "/survey/#{survey.id}/stats"
 end
 
 get '/user/:username' do  
@@ -55,7 +55,7 @@ get '/user/:username' do
 end
 
 get '/survey/:survey_id/stats' do
-  erb :survey_stats
+  erb ( current_user == Survey.find(params[:survey_id]).creator ? :survey_stats : :error )
 end
 
 # post '/edit' do
@@ -79,7 +79,7 @@ get '/survey/:id' do
   erb :take_survey
 end
 
-post '/submit/:id'
+post '/submit/:id' do
   @survey = Survey.find(params[:id])
   "SUCCESS!"
 end

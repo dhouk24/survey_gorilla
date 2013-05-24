@@ -1,10 +1,10 @@
 <h3><%=current_user.name%>'s Profile Page</h3>
 <div class = "surveys">
-  <% if !Survey.find_by_creator(current_user.id) %>
+  <% if !Survey.find_by_creator_id(current_user) %>
     <h4>Looks like you haven't made any surveys yet. <a href="/create">Get started?</a></h4>
   <% else %>
   <ul>
-    <% Survey.where(:creator_id => current_user.id).each do |survey|%>
+    <% Survey.where(:creator => current_user).each do |survey|%>
    <li><a href = "/survey/<%=survey.id%>/stats"><%=survey.name%></a></li>
    <%end%>
  </ul>
