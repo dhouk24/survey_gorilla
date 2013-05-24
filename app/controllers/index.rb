@@ -1,4 +1,5 @@
 get '/' do
+  session[:destination] = "/"
   erb :index
 end
 
@@ -24,15 +25,16 @@ end
 post '/login' do
   if user = User.authenticate(params[:user])
     session[:user_id] = user.id
-    redirect to '/'
+    redirect to "#{session[:destination]}"
   else
     redirect to '/login'
   end
 end
 
 get '/create' do
-  create_survey if !@survey     # checks if user is hitting this route from home "create" button or from updating survey creation
-  erb :create_survey, :locals => {:survey => @survey, :questions => @questions, :options => @options}
+  session[:destination] = "/create"
+  redirect '/login' unless current_user
+  erb :create_survey
 end
 
 post '/publish' do
@@ -52,3 +54,10 @@ end
 #   #adds options objects to options array
 #   redirect '/create'
 # end
+
+# publishing survey => Survey.create, Question.create, Option.create
+
+get '/survey/:id'
+  @survey = Survey.find_by_id(params[:id])
+  erb :take_survey
+end
