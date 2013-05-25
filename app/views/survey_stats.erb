@@ -3,11 +3,76 @@
 <h3>Share link to your awesome survey: <a href="/survey/<%= survey_id %>">http://localhost:9393/survey/<%= survey_id %></a></h3>
 <h4>survey has stats look at all this data viz all up in your face</h4>
 <h4>Survey results:</h4>
-<table>
-  <% survey.options.each do |option| %>
-  <tr>
-    <td><%= option.name %></td>
-    <td><%= option.count %></td>
+<table name="results">
+  <% survey.questions.each do |q| %>
+  <tr id="q_name">
+    <td><%= q.name %></td>
   </tr>
+    <% q.options.each do |o| %>
+  <tr class="options">
+    <td><%= o.name %></td>
+    <td><%= o.count %></td>
+  </tr>
+    <% end %>
   <% end %>
 </table>
+  <div id="container" style="width:60%; height:400px;"></div>
+
+  <script>
+    var questionName = $('#q_name td').html();
+    var totalOptions = $('tr.options').length;
+
+    var options = {
+      chart: {
+        renderTo: 'container',
+        type: 'column'
+      },
+      title: {
+        text: questionName
+      },
+      xAxis: {},
+      yAxis: {
+        title: {
+          text: 'Votes'
+        }
+      },
+      series: []
+    };
+
+    for (var x = 2; x <= totalOptions + 1; x++) {
+      options.series.push({
+        name: $('tr:nth-of-type(' + x + ') td:nth-of-type(1)').html(),
+        data: [parseInt($('tr:nth-of-type(' + x + ') td:nth-of-type(2)').html())]
+      });
+    }
+
+    var chart = new Highcharts.Chart(options);
+    // $(function() {
+    //   $('#container').highcharts({
+    //     chart: {
+    //       type: 'column'
+    //     },
+    //     title: {
+    //       text: $('h1').html()
+    //     },
+    //     xAxis: {
+    //       categories: [questionName]
+    //     },
+    //     yAxis: {
+    //       title: { 
+    //         text: 'Number of times picked'
+    //       }
+    //     },
+    //     for (var x = 1; x <= totalOptions; x++) {
+    //       series: [{
+    //         name: $('tr:nth-of-type(' + 2 + ') td:nth-of-type(1)').html(),
+    //         data: [$('tr:nth-of-type(' + 2 + ') td:nth-of-type(2)').html()]
+    //       }]
+    //     // }
+    //   });
+    // });
+
+    // for (var x = 1; x <= totalOptions; x++) {
+    //   console.log("Woo " + x);
+    // }
+  </script>
