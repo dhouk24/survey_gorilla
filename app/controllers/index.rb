@@ -42,12 +42,18 @@ post '/publish' do
                          :creator   => current_user,
                          :image     => params[:image],
                          :published => true)
-  question = Question.create(:name    => params[:question],
-                             :survey  => survey )
-  params[:option].each do |_, value|
-    Option.create(:question  => question,
-                  :name      => value )
+  
+  params[:question].each do |key, question|
+    q = Question.create( :name    => question,
+                         :survey  => survey )
+    
+    option_num = "option" + key.to_s
+    params[option_num].each do |_, option|
+      Option.create( :question => q,
+                     :name     => option)
+    end
   end
+
   redirect to "/survey/#{survey.id}/stats"
 end
 

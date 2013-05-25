@@ -1,16 +1,22 @@
-<form method = "post" action = '/publish' enctype="multipart/form-data">
+<div class = "question_form">
+
+  <form method = "post" action = '/publish' enctype="multipart/form-data">
+ 
   <h3>Title: <input type = "text" name = "survey_name" placeholder = "Name your survey here"></h3>
-    <input type="file" name="image"><br><br>
-    <label for="question">Question: </label><input type = "text" name = "question" placeholder = "Write question here">
-   <ul>
-     <li><input type = "text" name = "option[1]"  placeholder = "Place Option1 answer here"></li>
-     <li><input type = "text" name = "option[2]"  placeholder = "Place Option2 answer here"></li>
-    <button>Add Option</button>
-   </ul>
-   <button>Add Question</button>
-   <input type = "submit" value = "Submit">
-  </form>
+  <input type="file" name="image"><br><br>
+  
+    <div class = 'question'>
+      <label for="question">Question: </label><input type = "text" name = "question[1]" placeholder = "Write Question 1 here">
+      <ul>
+        <li><input type = "text" name = "option1[1]"  placeholder = "Place Option 1 answer here"></li>
+        <li><input type = "text" name = "option1[2]"  placeholder = "Place Option 2 answer here"></li>
+     </ul>
+     <a id="add_o" href="#">Add Option</a>
+   </div>
+ 
+  <input type = "submit" value = "Submit">
+ </form>
+
 </div>
 
-
-
+<a id="add_q" href="#">Add Question</a> 

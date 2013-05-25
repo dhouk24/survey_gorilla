@@ -6,7 +6,7 @@
   Question: <%= question.name %><br>
     <%question.options.each_with_index do |option, index|%>
     <input type ="radio" name ="<%=question.id%>" value ="<%=option.id%>"><%=option.name%><br>
-    <%end%>
+    <%end%><br><br>
   <%end%>
   <br>
 </ul>
