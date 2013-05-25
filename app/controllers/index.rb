@@ -43,14 +43,15 @@ post '/publish' do
                          :image     => params[:image],
                          :published => true)
   
+  # options = []
   params[:question].each do |key, question|
     q = Question.create( :name    => question,
                          :survey  => survey )
     
     option_num = "option" + key.to_s
     params[option_num].each do |_, option|
-      Option.create( :question => q,
-                     :name     => option)
+      Option.create(  :question => q,
+                      :name     => option)
     end
   end
 
