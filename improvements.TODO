@@ -1,0 +1,10 @@
+Easy:
+ ☐ Add styling to site
+ ☐ Add validations to forms
+ ☐ Add autofocus
+ ☐ Use sessions to block multiple survey attempts
+
+---- ✄ -----------------------
+
+Hard:
+ ☐ Allow for multiple survey fields using single table inheritance
