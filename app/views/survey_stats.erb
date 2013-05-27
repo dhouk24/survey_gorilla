@@ -8,7 +8,7 @@
   <tr class="question">
     <td><%= q.name %></td>
   </tr>
-    <% q.options.find(:all, :order => :id).each do |o| %>
+    <% q.options.order("id").each do |o| %>
   <tr class="option">
     <td><%= o.name %></td>
     <td><%= o.count %></td>

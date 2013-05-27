@@ -16,7 +16,7 @@ $(document).ready(function(){
 
   var totalQuestions = $('.question').length;
   for (var x = 1; x <= totalQuestions; x++) {
-    var table = 'table:nth-of-type('+x+')'
+    var table = 'table:nth-of-type('+x+')';
     $(table).hide();
     $(table).after('<div id="survey_question' + x + '"></div>');
     var options = {
@@ -49,7 +49,7 @@ $(document).ready(function(){
     };
 
     for (var y = 1; y < $(table+' tr').length; y++) {
-      var tr = 'tr:nth-of-type('+(y+1)+')'; 
+      var tr = 'tr:nth-of-type('+(y+1)+')';
       options.series.push({
         name: $(table+' '+tr+' td').first().html(),
         data: [parseInt($(table+' '+tr+' td').last().html())]
